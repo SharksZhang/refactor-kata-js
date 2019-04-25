@@ -1,0 +1,3 @@
+
+spaceship.owner = getDefaultOwner();
+
