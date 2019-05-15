@@ -9,19 +9,25 @@ const station = { name: "ZB1",
 };
 
 
-function readingsOutsideRange(station, min, max) {
+function readingsOutsideRange(station, range) {
     return station.readings
-        .filter(r => r.temp < min || r.temp > max);
+        .filter(r => !range.contains(r.temp));
 }
 
+const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling);
 
-alerts = readingsOutsideRange(station,
-    operatingPlan.temperatureFloor,
-    operatingPlan.temperatureCeiling);
+alerts = readingsOutsideRange(station, range);
 
 
 class NumberRange {
     constructor(min, max) {
         this._data = {min : min, max: max}
     }
+    get min(){return this._data.min}
+    get max(){return this._data.max}
+
+    contains(arg) {
+        return (arg >= this.min && arg <= this.max);
+    }
+
 }
