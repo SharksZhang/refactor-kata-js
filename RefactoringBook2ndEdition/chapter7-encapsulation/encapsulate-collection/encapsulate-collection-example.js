@@ -41,6 +41,7 @@ numAdvancedCourses = aPerson.courses
   const basicCourseNames = readBasicCourseNames(filename);
 aPerson.courses = basicCourseNames.map(name => new Course(name, false));
 
+
 // client  code…
   for(const name of readBasicCourseNames(filename)) {
       aPerson.courses.push(new Course(name, false));
